@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5">
+
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- set this if you map the Resteasy servlet to something other than /* -->
+    <context-param>
+        <param-name>resteasy.servlet.mapping.prefix</param-name>
+        <param-value>/</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>resteasy.server.cache.maxsize</param-name>
+        <param-value>100</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>resteasy.server.cache.eviction.wakeup.interval</param-name>
+        <param-value>10000</param-value>
+    </context-param>
+
+    <!-- Common Bootstrap when Guice is not requirerd -->
+
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+    </listener>
+
+    <!-- Common Bootstrap when Guice is requirerd
+    <listener>
+        <listener-class>
+            org.jboss.resteasy.plugins.guice.GuiceResteasyBootstrapServletContextListener
+        </listener-class>
+    </listener>
+    -->
+
+    <!-- if you are using Spring, Seam or EJB as your component model, remove the ResourceMethodSecurityInterceptor -->
+   <!--
+   <context-param>
+      <param-name>resteasy.resource.method-interceptors</param-name>
+      <param-value>org.jboss.resteasy.core.ResourceMethodSecurityInterceptor</param-value>
+   </context-param>
+   -->
+
+<!-- Remove this if you need to enable RESTeasy level cache
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.cache.server.ServletServerCache</listener-class>
+    </listener>
+-->
+
+    <servlet>
+        <servlet-name>JmxMonitorRESTfulServlet</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>JmxMonitorRESTfulServlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+<!--
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>JmxMonitorRESTfulServlet</realm-name>
+    </login-config>
+    <security-role>
+        <role-name>JBossAdmin</role-name>
+    </security-role>
+-->
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

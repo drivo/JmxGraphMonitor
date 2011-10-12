@@ -1,0 +1,247 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it.bistorm.lab</groupId>
+    <artifactId>jmx-graph-monitor</artifactId>
+    <packaging>war</packaging>
+    <version>1.0.0</version>
+    <name>JmxGraphMonitor</name>
+    <url>http://www.bitstorm.it</url>
+
+    <developers>
+        <developer>
+            <name>Guido D'Albore</name>
+            <email>guido@bitstorm.it</email>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>jboss</id>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
+        <repository>
+            <id>jboss releases</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>java.net2</id>
+            <url>http://download.java.net/maven/2</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>jboss</groupId>
+            <artifactId>jboss-jmx</artifactId>
+            <version>4.2.3.GA</version>
+            <scope>provided</scope>
+        </dependency>
+
+    <!-- RESTEasy API 2.0 -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-guice</artifactId>
+            <version>2.2.1.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-cache-core</artifactId>
+            <version>2.2.1.GA</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging-spi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss</groupId>
+                    <artifactId>jboss-common-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.cache</groupId>
+                    <artifactId>jbosscache-core</artifactId>
+                </exclusion>
+
+            </exclusions>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>2.2.1.GA</version>
+            <scope>compile</scope>
+            <exclusions>
+                <!-- Already included into JBossAS 5.1 -->
+                <exclusion>
+                    <groupId>javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                </exclusion>
+                <!-- Not used within the project -->
+                <exclusion>
+                    <groupId>commons-httpclient</groupId>
+                    <artifactId>commons-httpclient</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxb-provider</artifactId>
+            <version>2.2.1.GA</version>
+            <scope>compile</scope>
+            <exclusions>
+                <!-- Already included into JBossAS 5.1 -->
+                <exclusion>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.xml.stream</groupId>
+                    <artifactId>sjsxp</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jsapi</artifactId>
+            <version>2.2.1.GA</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>jaxrs-api</artifactId>
+            <version>2.2.1.GA</version>
+            <scope>compile</scope>
+        </dependency>
+    <!-- Utilities from Apache -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+            <scope>compile</scope>
+        </dependency>
+
+    <!-- Servlet/JSP/JSTL API 2.5 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Additional API -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JPA API -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.5.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j13</artifactId>
+            <version>1.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.13</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>verify</phase>
+                        <configuration>
+                            <tasks>
+                                <!-- Uncomment this if you want enable automatic deploy in
+                                     your local JBossAS. -->
+
+                                <property name="JBOSS_LOCAL_HOME" value="/usr/local/jboss-5.1.0.GA"/>
+                                <property name="JBOSS_LOCAL_SERVER_CONFIGURATION" value="default"/>
+
+                                <echo message="Undeploying '${project.build.finalName}.war' from JBossAS..."/>
+                                <exec dir="${basedir}/target" executable="/bin/rm" failonerror="true" os="Linux">
+                                    <arg line="-f ${JBOSS_LOCAL_HOME}/server/${JBOSS_LOCAL_SERVER_CONFIGURATION}/deploy/${project.build.finalName}.war"/>
+                                </exec>
+                                <echo message="Undeploying '${project.build.finalName}.war' from JBossAS...done"/>
+                                
+                                <echo message="Deploying '${project.build.finalName}.war' into JBossAS..."/>
+                                <exec dir="${basedir}/target" executable="/bin/cp" failonerror="true" os="Linux">
+                                    <arg line="-f ${project.build.finalName}.war ${JBOSS_LOCAL_HOME}/server/${JBOSS_LOCAL_SERVER_CONFIGURATION}/deploy"/>
+                                </exec>
+                                <echo message="Deploying '${project.build.finalName}.war' into JBossAS...done"/>
+                                
+                                <!-- -->
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>JmxGraphMonitor-${project.version}</finalName>
+    </build>
+</project>
