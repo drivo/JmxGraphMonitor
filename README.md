@@ -23,6 +23,10 @@ JBossAS configuration):
 
 [http://127.0.0.1:8080/jmx-monitor/](http://127.0.0.1:8080/jmx-monitor/)
 
+The following images show how will appear the graphs:
+
+<img src="https://github.com/setumiami/JmxGraphMonitor/raw/master/doc/graphs.png" />
+
 License
 -------
 * [Licensed under the Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
